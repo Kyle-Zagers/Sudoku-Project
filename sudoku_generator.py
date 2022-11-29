@@ -104,11 +104,10 @@ class SudokuGenerator:
     '''
 
     def valid_in_box(self, row_start, col_start, num):
-        if row_start >= self.row_length - 2 or col_start >= self.row_length - 2:
-            for i in range(row_start, row_start + 3):
-                for j in range(col_start, col_start + 3):
-                    if self.board[i][j] == num:
-                        return False
+        for i in range(row_start, row_start + 3):
+            for j in range(col_start, col_start + 3):
+                if self.board[i][j] == num:
+                    return False
         return True
 
     '''
@@ -137,7 +136,7 @@ class SudokuGenerator:
         if col < 3:
             col_start = 0
         elif col < 6:
-            row_start = 3
+            col_start = 3
         else:
             col_start = 6
 
@@ -169,16 +168,6 @@ class SudokuGenerator:
                         break
 
 
-                '''
-                placedDigit = False
-                digit = 0
-                digits = []
-                while not placedDigit:
-                    digit = random.randint(1, 9)
-                    if self.is_valid(i, j, digit):
-                        self.board[i][j] = digit
-                        placedDigit = True
-                '''
 
     '''
     Fills the three boxes along the main diagonal of the board
@@ -290,3 +279,9 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board()
     return board
+
+test = SudokuGenerator(9, 2)
+
+test.fill_values()
+
+test.print_board()

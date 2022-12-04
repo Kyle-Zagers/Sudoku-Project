@@ -19,13 +19,11 @@ class Board:
                 self.removed = 40
             case "hard":
                 self.removed = 50
-        board_and_answers = generate_sudoku(9, self.removed)
-        starting_values = board_and_answers[0]
-        self.answers = board_and_answers[1]
+        self.answers = generate_sudoku(9, self.removed)
         for column in range(9):
             self.cells[column] = {}
             for row in range(9):
-                self.cells[column][row] = Cell(f"{starting_values[column][row]}", row, column, screen)
+                self.cells[column][row] = Cell(f"{self.answers[column][row]}", row, column, screen)
 
     def draw(self):
         # draw horizontal lines

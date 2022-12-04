@@ -1,14 +1,10 @@
 import pygame
-from sudoku_generator import *
+from constants import *
+from sudoku_generator import generate_sudoku
 from cell import Cell
 
 
 class Board:
-    cell_size = 75
-    square_size = 225
-    line_color = (245, 152, 66)
-    bold_line_width = 6
-    thin_line_width = 2
     cells = {}
 
     def __init__(self, width, height, screen, difficulty):
@@ -34,25 +30,24 @@ class Board:
     def draw(self):
         # draw horizontal lines
         for i in range(1, 3):
-            pygame.draw.line(self.screen, self.line_color, (0, self.square_size * i),
-                             (self.width, self.square_size * i), self.bold_line_width)
+            pygame.draw.line(self.screen, LINE_COLOR, (0, SQUARE_SIZE * i),
+                             (self.width, SQUARE_SIZE * i), BOLD_LINE_WIDTH)
 
             for i in range(1, 9):
-                pygame.draw.line(self.screen, self.line_color, (0, self.cell_size * i),
-                                 (self.width, self.cell_size * i), self.thin_line_width)
+                pygame.draw.line(self.screen, LINE_COLOR, (0, CELL_SIZE * i),
+                                 (self.width, CELL_SIZE * i), THIN_LINE_WIDTH)
         # draw vertical lines
         for i in range(1, 3):
-            pygame.draw.line(self.screen, self.line_color, (self.square_size * i, 0),
-                             (self.square_size * i, self.height), self.bold_line_width)
+            pygame.draw.line(self.screen, LINE_COLOR, (SQUARE_SIZE * i, 0),
+                             (SQUARE_SIZE * i, self.height), BOLD_LINE_WIDTH)
 
         for i in range(1, 9):
-            pygame.draw.line(self.screen, self.line_color, (self.cell_size * i, 0),
-                             (self.cell_size * i, self.height), self.thin_line_width)
+            pygame.draw.line(self.screen, LINE_COLOR, (CELL_SIZE * i, 0),
+                             (CELL_SIZE * i, self.height), THIN_LINE_WIDTH)
 
-        pygame.draw.line(self.screen, (0, 125, 200), (0, self.square_size+56 * i),
-                         (self.width, self.square_size+56 * i), self.bold_line_width)
+        pygame.draw.line(self.screen, (0, 125, 200), (0, SQUARE_SIZE + 56 * 8),
+                         (self.width, SQUARE_SIZE + 56 * 8), BOLD_LINE_WIDTH)
 
         for i in range(9):
             for j in range(9):
                 self.cells[i][j].draw(self.screen)
-

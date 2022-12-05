@@ -173,7 +173,7 @@ def main():
                                 if board.cells[row][col].value_rect.collidepoint(event.pos) and board.cells[row][col].value == "0":
                                     not_lose = False
                                     for i in range(9):
-                                        if board.sudoku.is_valid(row, col, i):
+                                        if board.sudoku.is_valid(row, col, i+1):
                                             not_lose = True
                                             break
                                     if not not_lose:

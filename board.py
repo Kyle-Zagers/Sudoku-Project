@@ -17,7 +17,7 @@ class Board:
         self.exit_rectangle = None
         match difficulty:
             case "easy":
-                self.removed = 1
+                self.removed = 30
             case "medium":
                 self.removed = 40
             case "hard":

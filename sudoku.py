@@ -133,6 +133,16 @@ def loss_exit_screen(screen):
         pygame.display.update()
 
 
+def has_won(screen, board):
+    won = True
+    for x in range(9):
+        for y in range(9):
+            if board.cells[x][y].value == "0" and board.cells[x][y].sketched_value == 0:
+                won = False
+    if won:
+        won_exit_screen(screen)
+
+
 def main():
     pygame.init()
     screen = pygame.display.set_mode([WIDTH, HEIGHT])
@@ -238,13 +248,7 @@ def main():
                                                     main()
                                                 elif board.exit_rectangle.collidepoint(event2.pos):
                                                     sys.exit()
-                                    won = True
-                                    for x in range(9):
-                                        for y in range(9):
-                                            if not board.sudoku.is_valid(x, y, board.cells[x][y]):
-                                                won = False
-                                    if won:
-                                        won_exit_screen(screen)
+                                    has_won(screen, board)
 
                 case pygame.KEYDOWN:
                     if event.key == pygame.K_r:

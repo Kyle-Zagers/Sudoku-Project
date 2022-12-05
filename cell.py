@@ -5,7 +5,7 @@ from constants import *
 class Cell:
     def __init__(self, value, row, col, screen):
         self.value = value
-        self.sketched_value = None
+        self.sketched_value = 0
         self.row = row
         self.col = col
         self.screen = screen

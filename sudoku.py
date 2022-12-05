@@ -71,9 +71,61 @@ def start_screen(screen):
         pygame.display.update()
 
 
-def exit_screen(screen):
-    print("no")
+def won_exit_screen(screen):
+    # Initialize title font
+    start_title_font = pygame.font.Font(None, 90)
+    start_title2_font = pygame.font.Font(None, 66)
+    button_font = pygame.font.Font(None, 50)
 
+    # Color background
+    screen.fill(BG_COLOR)
+
+    # Initialize and draw title
+    title_surface = start_title_font.render("Game Won!", False, LINE_COLOR)
+    title_rectangle = title_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 - 175))
+    screen.blit(title_surface, title_rectangle)
+
+    won_text = button_font.render("Exit", False, (255, 255, 255))
+    won_surface = pygame.Surface((won_text.get_size()[0] + 20, won_text.get_size()[1] + 20))
+    won_surface.fill(LINE_COLOR)
+    won_surface.blit(won_text, (10, 10))
+    won_rectangle = won_surface.get_rect(center=(WIDTH // 4, HEIGHT // 2 + 100))
+    screen.blit(won_surface, won_rectangle)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if won_rectangle.collidepoint(event.pos):
+                    sys.exit()
+
+def loss_exit_screen(screen):
+    # Initialize title font
+    start_title_font = pygame.font.Font(None, 90)
+    start_title2_font = pygame.font.Font(None, 66)
+    button_font = pygame.font.Font(None, 50)
+
+    # Color background
+    screen.fill(BG_COLOR)
+
+    # Initialize and draw title
+    title_surface = start_title_font.render("You Lost :(", False, LINE_COLOR)
+    title_rectangle = title_surface.get_rect(
+        center=(WIDTH // 2, HEIGHT // 2 - 175))
+    screen.blit(title_surface, title_rectangle)
+
+    loss_text = button_font.render("Restart", False, (255, 255, 255))
+    loss_surface = pygame.Surface((loss_text.get_size()[0] + 20, loss_text.get_size()[1] + 20))
+    loss_surface.fill(LINE_COLOR)
+    loss_surface.blit(loss_text, (10, 10))
+    loss_rectangle = loss_surface.get_rect(center=(WIDTH // 4, HEIGHT // 2 + 100))
+    screen.blit(loss_surface, loss_rectangle)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if loss_rectangle.collidepoint(event.pos):
+                    sys.exit()
 
 if __name__ == "__main__":
     pygame.init()
